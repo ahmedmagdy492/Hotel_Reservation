@@ -1,0 +1,273 @@
+﻿@using Microsoft.AspNet.Identity;
+@model Hotels_Resrevation.ViewModels.HotelProfileViewModel
+@{
+    if (User.Identity.GetUserId() == Model.CurrentUserProfile.Id)
+    {
+        ViewBag.Title = Hotels_Resrevation.Resources.Profile.ProfileIndex.Profile;
+    }
+    else
+    {
+        ViewBag.Title = Model.CurrentUserProfile.Email.Split('@')[0].ToUpper() + " Hotel";
+    }
+}
+
+<div>
+    <div>
+        @if (Model.Images.Count() > 0)
+        {
+            <div class="cover-section" style="background: url(@Model.Images.FirstOrDefault(i => i.IsProfileImg == true).Title);background-size: cover;background-position: center;">
+            </div>
+        }
+        else
+        {
+            <div class="cover-section" style="background: url('/Content/imgs/site/banner.jpg');background-size: cover;background-position: center;">
+            </div>
+        }
+        <h1 style="text-align: center;">@Model.CurrentUserProfile.UserName.Split('@')[0].ToUpper() Hotel</h1>
+        @if (User.IsInRole(Hotels_Resrevation.Constants.Constants.HotelRole) && User.Identity.GetUserId() == Model.CurrentUserProfile.Id)
+        {
+            <div style="display: flex;justify-content: center;">
+                <button onclick="load()" class="ui button">
+                    @Hotels_Resrevation.Resources.Profile.ProfileIndex.Upload_an_Image
+                </button>
+            </div>
+        }
+    </div>
+
+    <div class="main-container">
+        @foreach (var img in Model.Images)
+        {
+            <div style="margin: 5px;">
+                <img class="medium ui image" src="@img.Title">
+                @if (User.IsInRole(Hotels_Resrevation.Constants.Constants.HotelRole) && User.Identity.GetUserId() == Model.CurrentUserProfile.Id)
+                {
+                    <button style="width: 100%;" onclick="delImg(event, @img.Id)" class="ui negative button">
+                        @Hotels_Resrevation.Resources.Profile.ProfileIndex.Delete
+                    </button>
+                    if (!img.IsProfileImg)
+                    {
+                        <button style="width: 100%;" onclick="makeProfile(@img.Id)" class="ui primary button">
+                            @Hotels_Resrevation.Resources.Profile.ProfileIndex.Make_Profile_Image
+                        </button>
+                    }
+                }
+            </div>
+        }
+    </div>
+
+    @if (Model.Facilties.Count() > 0 || User.IsInRole(Hotels_Resrevation.Constants.Constants.HotelRole))
+    {
+        <div style="width: 90%;margin: 150px auto;">
+            <h1 style="text-align: center;">@Hotels_Resrevation.Resources.HomeIndex.Hotel_Facilites</h1>
+            <div id="facContainer" class="ui cards" style="justify-content: center;">
+                @Html.Partial("_HotelFacilites", Model.Facilties)
+            </div>
+        </div>
+        if (User.IsInRole(Hotels_Resrevation.Constants.Constants.HotelRole) && User.Identity.GetUserId() == Model.CurrentUserProfile.Id)
+        {
+            <h3 style="text-align: center;">
+                <a class="ui primary button" onclick="showModal()">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Add_Facility</a>
+            </h3>
+        }
+
+    }
+
+    <div style="width: 90%;margin: 150px auto;">
+        <h1 style="text-align: center;font-size: 30px">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Available_Rooms</h1>
+        @if (Model.Rooms.Count() >= 3)
+        {
+            <div class="ui cards">
+                @for (int i = 0; i < 3; i++)
+                {
+                    <div class="ui card">
+                        <div class="image">
+                            <img src="~/Content/imgs/@Model.Rooms.ElementAt(i).RoomImages[0].Title" height="100">
+                        </div>
+                        <div class="content">
+                            <h3>@Hotels_Resrevation.Resources.Rooms.RoomsIndex.Room_No_ @Model.Rooms.ElementAt(i).Id</h3>
+                            <a class="header">@Model.Rooms.ElementAt(i).Type</a>
+                            <div class="meta">
+                                <span>@Model.Rooms.ElementAt(i).Capcity Person</span>
+                            </div>
+                            <div class="description">
+                                @Model.Rooms.ElementAt(i).Price $
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            @(@Model.Rooms.ElementAt(i).IsSuite ? "Suite" : "Normal Room")
+                        </div>
+                    </div>
+                }
+                <div class="ui card">
+                    <div class="image">
+                        <div class="ui placeholder">
+                            <div class="square image" style="height: 100px"></div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="ui placeholder">
+                            <div class="header">
+                                <div class="very short line"></div>
+                                <div class="medium line"></div>
+                            </div>
+                            <div class="paragraph">
+                                <div class="short line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a href="/Rooms/Index?hotelId=@Model.CurrentUserProfile.Id" class="ui primary button">
+                            @Hotels_Resrevation.Resources.Profile.ProfileIndex.More_Rooms ...
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div style="width: 50%;margin: auto;" class="ui card">
+                <div class="content center">
+                    <a class="header" href="/Rooms/Index?hotelId=@Model.CurrentUserProfile.Id">@Hotels_Resrevation.Resources.Profile.ProfileIndex.NoImages</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div style="width: 70%;margin: 150px auto;" class="ui relaxed divided list">
+        <h2 style="text-align: center;">@Hotels_Resrevation.Resources.Profile.ProfileIndex.User_Reviews</h2>
+        <div class="item">
+            <div class="content">
+                <a class="header">Semantic-Org/Semantic-UI</a>
+                <div class="description">Updated 10 mins ago</div>
+                <div class="ui star rating" data-rating="4"></div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="content">
+                <a class="header">Semantic-Org/Semantic-UI-Docs</a>
+                <div class="description">Updated 22 mins ago</div>
+                <div class="ui star rating" data-rating="2"></div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="content">
+                <a class="header">Semantic-Org/Semantic-UI-Meteor</a>
+                <div class="description">Updated 34 mins ago</div>
+                <div class="ui star rating" data-rating="3"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Upload images modal -->
+<div class="ui basic modal">
+    <div class="ui icon header">
+        @Hotels_Resrevation.Resources.Profile.ProfileIndex.Upload_an_Image
+    </div>
+    <div class="content">
+        <form method="POST" style="display: flex;justify-content: center;" enctype="multipart/form-data" class="ui form" action="/HotelProfile/UploadImage">
+            <div class="ui input focus">
+                <input type="file" name="img" placeholder="choose an image">
+            </div>
+            <br /><br />
+            <div class="actions">
+                <button type="submit" class="ui red basic cancel inverted button">
+                    @Hotels_Resrevation.Resources.Profile.ProfileIndex.Upload
+                </button>
+                <div class="ui red basic cancel inverted button">
+                    @Hotels_Resrevation.Resources.Profile.ProfileIndex.Cancel
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete image modal -->
+<div class="ui modal" id="delete-modal">
+    <div class="header">
+        Warning Message
+    </div>
+    <div class="image content">
+        <div class="description">
+            <div class="ui header">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Are_you_sure_you_want_to_delete_the_image___</div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            @Hotels_Resrevation.Resources.Profile.ProfileIndex.Cancel
+        </div>
+        <div onclick="confirmDel()" class="ui negative right button">
+            @Hotels_Resrevation.Resources.Profile.ProfileIndex.Delete
+        </div>
+    </div>
+</div>
+
+<!-- add facility modal -->
+<div class="ui tiny modal">
+    <div class="header">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Add_Facility</div>
+    <div class="content">
+        <div class="ui form">
+            <div class="field">
+                <label>Name</label>
+                <textarea id="facName"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <button class="ui positive button" onclick="addFac()">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Add_Facility</button>
+        <button onclick="hideModal()" class="ui negative button">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Cancel</button>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function load() {
+            $('.ui.basic.modal')
+                .modal('show');
+        }
+        let id = 0;
+        function delImg(event, imgId) {
+            $('#delete-modal')
+                .modal('show');
+            id = imgId;
+        }
+        function confirmDel() {
+            $.ajax({
+                url: '/HotelProfile/DeleteImage?id=' + id,
+                method: 'POST',
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+        function makeProfile(id) {
+            $.ajax({
+                url: '/HotelProfile/MakeProfileImage?id=' + id,
+                method: 'POST',
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+        function showModal() {
+            $('.ui.tiny.modal')
+                .modal('show');
+        }
+        function hideModal() {
+            $('.ui.tiny.modal')
+                .modal('hide');
+        }
+        function addFac() {
+            const nameVal = document.querySelector("#facName");
+            const facContainer = document.querySelector("#facContainer");
+            $.ajax({
+                url: '/Facility/AddFacility?name=' + nameVal.value,
+                method: 'POST',
+                success: function (res) {
+                    facContainer.innerHTML = res;
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "right menu" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "ui item" })
+        if (User.IsInRole(Hotels_Resrevation.Constants.Constants.HotelRole))
+        {
+            @Html.ActionLink(Hotels_Resrevation.Resources.Profile.ProfileIndex.Profile, "Index", "HotelProfile", routeValues: null, htmlAttributes: new { title = "Manage", @class = "ui item" })
+        }
+        <a class="ui item" href="javascript:document.getElementById('logoutForm').submit()">@Hotels_Resrevation.Resources.HomeIndex.Log_out</a>
+
+    }
+}
+else
+{
+    <div class="right menu">
+        @Html.ActionLink(Hotels_Resrevation.Resources.HomeIndex.Register, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "ui item" })
+        @Html.ActionLink(Hotels_Resrevation.Resources.HomeIndex.Login, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "ui item" })
+    </div>
+}

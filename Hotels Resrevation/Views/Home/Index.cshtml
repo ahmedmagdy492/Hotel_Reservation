@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div style="background: url('/Content/imgs/site/banner.jpg');background-size:cover; background-repeat: no-repeat; background-position: top;height: 90vh;display: grid;justify-content: center;align-content: center;">    
+    <h3 style="text-align: center;font-size: 70px;color: #000;">Mr.Booker</h3>
+</div>
+
+
+<h1 style="text-align: center;">@Hotels_Resrevation.Resources.HomeIndex.Features</h1>
+<div style="text-align: center;margin: 50px;display: flex;justify-content: space-around;">
+
+    <div style="border: 1px solid #ddd;border-radius: 10px;padding: 10px;max-width: 200px;">
+        <div>
+            <img src="~/Content/imgs/site/search.png" style="width: auto; height: 100px;" />
+        </div>
+        <div>
+            <h4>@Hotels_Resrevation.Resources.HomeIndex.Searching</h4>
+            <p>@Hotels_Resrevation.Resources.HomeIndex.You_can_search_for_the_best_hotels_in_the_world_with_one_click</p>
+        </div>
+    </div>
+
+    <div style="border: 1px solid #ddd;border-radius: 10px;padding: 10px;max-width: 200px;">
+        <div>
+            <img src="~/Content/imgs/site/reservation.png" style="width: auto; height: 100px;"  />
+        </div>
+        <div>
+            <h4>@Hotels_Resrevation.Resources.HomeIndex.Online_Booking</h4>
+            <p>@Hotels_Resrevation.Resources.HomeIndex.OnlineBookingText</p>
+        </div>
+    </div>    
+    <div style="border: 1px solid #ddd;border-radius: 10px;padding: 10px;max-width: 200px;">
+        <div>
+            <img src="~/Content/imgs/site/review.png" style="width: auto; height: 100px;" />            
+        </div>
+        <div>
+            <h4>@Hotels_Resrevation.Resources.HomeIndex.Reviews</h4>
+            <p>@Hotels_Resrevation.Resources.HomeIndex.ReviewText</p>
+        </div>
+    </div>
+
+</div>

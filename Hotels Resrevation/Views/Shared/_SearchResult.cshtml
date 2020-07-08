@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Hotels_Resrevation.Models.ApplicationUser>
+
+@if (Model.Count() > 0)
+{
+    foreach (var hotel in Model)
+    {
+        <div class="card">
+            <div class="image">
+                @if (hotel.Images.Count > 0)
+                {
+                    foreach (var img in hotel.Images)
+                    {
+                        if (img.IsProfileImg)
+                        {
+                            <img src="~/Content/imgs/@Path.GetFileName(img.Title)" height="100">
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    <img src="~/Content/imgs/site/banner.jpg" height="100">
+                }
+            </div>
+            <div class="content">
+                <div class="header">
+                    <a href="/HotelProfile/Index?userId=@hotel.Id">@hotel.UserName.Split('@')[0].ToUpper() Hotel</a>
+                </div>
+                <div class="meta">
+                    <a>@hotel.Location</a>
+                </div>
+                <div class="description">
+                    Just some hotel information
+                </div>
+            </div>
+            <div class="extra content">
+                <span class="right floated">
+                    Joined in 2013
+                </span>
+                <span>
+                    75 Friends
+                </span>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <h3 style="text-align: center;">@Hotels_Resrevation.Resources.Searching.SearchIndex.No_Hotels_were_found</h3>
+}

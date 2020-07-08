@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mr.Booker</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/css/icon.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="ui secondary pointing menu" style="margin-top: -47px;">
+        @Html.ActionLink("Mr.Booker", "Index", "Home", null, new { @class = "item", style = "font-weight: bold;" })
+        @Html.ActionLink(Hotels_Resrevation.Resources.HomeIndex.Home, "Index", "Home", null, new { @class = "item" })
+
+        @if (Request.IsAuthenticated && User.IsInRole(Hotels_Resrevation.Constants.Constants.UserRole))
+        {
+            @Html.ActionLink(Hotels_Resrevation.Resources.Profile.ProfileIndex.Hotels, "Index", "Search", routeValues: null, htmlAttributes: new { title = Hotels_Resrevation.Resources.HomeIndex.Searching, @class = "ui item" })
+            @Html.ActionLink(Hotels_Resrevation.Resources.HomeIndex.Rooms_Search, "Index", "RoomSearch", routeValues: null, htmlAttributes: new { title = Hotels_Resrevation.Resources.Searching.SearchIndex.RoomSearch, @class = "ui item" })
+        }
+
+        <div class="ui dropdown item" onclick="toggleDropdown()">
+            <div class="text">@Hotels_Resrevation.Resources.HomeIndex.Language</div>
+            <i class="dropdown icon"></i>
+            <div class="menu" id="langMenu">
+                @Html.ActionLink("English", "Change", "Language", new { LanguageAbbrevation = "en" }, new { @class = "item" })
+                @Html.ActionLink("Arabic", "Change", "Language", new { LanguageAbbrevation = "ar" }, new { @class = "item" })
+            </div>
+        </div>
+
+        @Html.Partial("_LoginPartial")
+    </div>
+    <div style="margin-top: -15px;" dir = "@(System.Threading.Thread.CurrentThread.CurrentCulture.Name == "ar" ? "rtl" : "ltr")">
+        @RenderBody()
+    </div>
+
+    <div style="margin-top: 50px;background: #000;color: #fff;padding: 20px;">
+        <footer style="display: flex;justify-content: space-around;">
+            <div>
+                <ul style="list-style: none;">
+                    <li class="anchor">Home</li>
+                    <li class="anchor">About</li>
+                    <li class="anchor">Contact</li>
+                </ul>
+            </div>
+
+            <div style="margin: 18px;max-width: 250px;">
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using</p>
+            </div>
+
+            <div>
+                <h4>Short Links:</h4>
+                <ul style="list-style: none;">
+                    <li class="anchor">Github</li>
+                    <li class="anchor">Facebook</li>
+                    <li class="anchor">Patreon</li>
+                </ul>
+            </div>
+        </footer>
+        <hr style="color: #fff;" />
+        <p style="text-align: center;">All rights reservered &copy; @DateTime.Now.Year - Mr.Booker</p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/semantic")
+
+   <script>
+       function toggleDropdown()
+       {
+           const menuEle = document.querySelector("#langMenu");
+
+           if (menuEle.style.display === 'none') {
+               menuEle.style.display = 'block';
+           }
+           else {
+               menuEle.style.display = "none";
+           }
+       }
+   </script>
+</body>
+</html>

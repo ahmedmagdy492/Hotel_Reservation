@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Hotels_Resrevation.Models.ApplicationUser>
+@{
+    ViewBag.Title = Hotels_Resrevation.Resources.Searching.SearchIndex.Search;
+}
+
+<div class="main-content">
+    <div style="padding: 50px;background: url('/Content/imgs/site/banner.jpg');background-repeat: no-repeat;background-size: cover;width: 100%;height: 350px;">
+        <h2 style="text-align: center;font-size: 60px;">
+            @Hotels_Resrevation.Resources.Searching.SearchIndex.Search
+        </h2>
+        <h3 style="text-align: center;font-size: 25px;">@Hotels_Resrevation.Resources.Searching.SearchIndex.Find_what_you_are_looking_for</h3>
+        <div class="ui form" style="display: flex;justify-content: center;">
+            <div class="field">
+                <input onkeydown="searchEnter(event)" id="inSearch" style="width: 400px;" type="search" name="search" placeholder="@Hotels_Resrevation.Resources.Searching.SearchIndex.SearchName...">
+            </div>
+            <div class="field">
+                <button class="ui secondary button" onclick="search()">
+                    @Hotels_Resrevation.Resources.Searching.SearchIndex.Search
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h2 style="text-align: center;margin-top: 20px;">@Hotels_Resrevation.Resources.Searching.SearchIndex.All_Hotels</h2>
+        <div id="cards-container" class="ui cards" style="margin: 50px;min-height: 300px;">
+            @Html.Partial("_SearchResult", Model)
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        window.addEventListener('load', () => {
+            const searchIn = document.getElementById("inSearch").focus();
+        });
+        function search() {
+            const searchVal = document.querySelector('#inSearch').value;
+            if (searchVal !== ' ') {
+                const container = document.querySelector("#cards-container");
+                container.innerHTML = `
+                            <div style="width: 100%;" class="ui three column grid">
+                                  <div class="column">
+                                    <div class="ui raised segment">
+                                      <div class="ui placeholder">
+                                        <div class="image">
+                                        </div>
+                                        <div class="paragraph">
+                                          <div class="line"></div>
+                                          <div class="line"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="column">
+                                    <div class="ui raised segment">
+                                      <div class="ui placeholder">
+                                        <div class="image">
+                                        </div>
+                                        <div class="paragraph">
+                                          <div class="line"></div>
+                                          <div class="line"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="column">
+                                    <div class="ui raised segment">
+                                      <div class="ui placeholder">
+                                        <div class="image">
+                                        </div>
+                                        <div class="paragraph">
+                                          <div class="line"></div>
+                                          <div class="line"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                    `;
+                setTimeout(() => {
+                    $.ajax({
+                        url: '/Search/Search?searchQuery=' + searchVal,
+                        method: 'POST',
+                        success: function (result) {
+                            container.innerHTML = result;
+                            window.scrollTo(0, 300);
+                        }
+                    });
+                }, 3000);
+            }
+        }
+        function searchEnter(event) {
+            const searchQuery = event.target.value;
+            if (event.keyCode == 13) {
+                search();
+            }
+        }
+    </script>
+}

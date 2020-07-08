@@ -1,0 +1,80 @@
+﻿html {
+    scroll-behavior: smooth;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/* My own custom styling */
+
+.anchor{
+    color: #fff !important;
+    text-decoration: underline;
+}
+
+.input-field{
+    width: 150px !important;
+}
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+}
+
+    /* Style the images inside the grid */
+    .column img {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+        .column img:hover {
+            opacity: 1;
+        }
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The expanding image container (positioning is needed to position the close button and the text) */
+.container {
+    position: relative;
+    display: none;
+}
+
+.cover-section{
+    width: auto;
+    height: 300px;
+    background-repeat: no-repeat;
+}
+
+.main-container{
+    margin: 20px;
+    display: flex;
+}

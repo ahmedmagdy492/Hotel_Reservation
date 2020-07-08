@@ -1,0 +1,207 @@
+﻿@using Hotels_Resrevation.ViewModels
+@using Microsoft.AspNet.Identity
+@model OneRoomViewModel
+@{
+    ViewBag.Title = Hotels_Resrevation.Resources.Rooms.RoomsIndex.Room_No_ + " " + Model.Room.Id;
+}
+
+<div style="margin: 0;background: #000;color: #fff;display: flex;justify-content: center;align-items: center;">
+    <div>
+        <button class="ui secondary button" onclick="next()"><</button>
+    </div>
+    <div>
+        <img id="curImg" src="~/Content/imgs/@Model.RoomImages[0].Title" height="350" />
+        @foreach (var img in Model.RoomImages)
+        {
+            <img class="img-slider" src="~/Content/imgs/@img.Title" style="width: 100%;display: none;" />
+        }
+    </div>
+    <div>
+        <button class="ui secondary button" onclick="prev()">></button>
+    </div>
+</div>
+
+@if (User.IsInRole(Hotels_Resrevation.Constants.Constants.HotelRole) && User.Identity.GetUserId() == Model.HotelId)
+{
+    <div style="display: flex;justify-content: center;margin-top: 50px;">
+        <form class="ui form" method="post" enctype="multipart/form-data" action="/Rooms/UploadRoomImage?roomId=@Model.Room.Id&hotelId=@Model.HotelId">
+            <div class="field">
+                <label>@Hotels_Resrevation.Resources.Profile.ProfileIndex.Upload_an_Image</label>
+                <input type="file" name="img" />
+            </div>
+            <div class="field">
+                <button class="ui secondary button" type="submit">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Upload</button>
+            </div>
+        </form>
+    </div>
+}
+
+@if (Request.IsAuthenticated && User.IsInRole(Hotels_Resrevation.Constants.Constants.UserRole))
+{
+    <div style="display: flex;justify-content: center;margin-top: 50px;border: 1px solid #ddd;padding: 10px;border-radius: 10px;margin: 30px;">
+        <div>
+            <div>
+                <h1 style="text-align: center;">@Hotels_Resrevation.Resources.Rooms.RoomsIndex.Room_No_ @Model.Room.Id</h1>
+                <h2>
+                    @Model.Room.Type
+                </h2>
+                <h3>@Hotels_Resrevation.Resources.Rooms.RoomsIndex.Room_Price_for_a_night : @Model.Room.Price $</h3>
+                <h3>@Model.Room.Capcity @Hotels_Resrevation.Resources.Rooms.RoomsIndex.Persons</h3>
+            </div>
+            <h3 style="text-align: center">
+                <a style="margin-top: 20px;font-size: 20px;cursor: pointer" onclick="loadModal()" class="ui secondary button">@Hotels_Resrevation.Resources.Rooms.RoomsIndex.Book_Now</a>
+                <a onclick="loadCheckModal()" class="ui black deny button" style="margin-top: 20px;font-size: 20px;cursor: pointer">
+                    @Hotels_Resrevation.Resources.Rooms.RoomsIndex.Check_Availability
+                </a>
+            </h3>
+        </div>
+    </div>
+}
+
+
+<!-- add reservation -->
+<div class="ui long modal">
+    <div class="header">
+        @Hotels_Resrevation.Resources.Rooms.RoomsIndex.Book_Now
+    </div>
+    <div class="content">
+        <div class="ui form">
+            <div class="field">
+                <label>@Hotels_Resrevation.Resources.Rooms.RoomsIndex.FromDate</label>
+                <input type="date" id="fromDate" />
+            </div>
+            <div class="field">
+                <label>@Hotels_Resrevation.Resources.Rooms.RoomsIndex.toDate</label>
+                <input type="date" id="toDate" />
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button" onclick="hideModal()">
+            @Hotels_Resrevation.Resources.Profile.ProfileIndex.Cancel
+        </div>
+        <div class="ui positive button" onclick="bookNow()">
+            @Hotels_Resrevation.Resources.Rooms.RoomsIndex.Book_Now
+        </div>
+    </div>
+</div>
+
+
+<!-- check reservation -->
+<div class="ui check modal">
+    <div class="header">
+        @Hotels_Resrevation.Resources.Rooms.RoomsIndex.Check_Availability
+    </div>
+    <div class="content">
+        <div class="ui form">
+            <div class="field">
+                <label>@Hotels_Resrevation.Resources.Rooms.RoomsIndex.FromDate</label>
+                <input type="date" id="fromDateCheck" />
+            </div>
+            <div class="field">
+                <label>@Hotels_Resrevation.Resources.Rooms.RoomsIndex.toDate</label>
+                <input type="date" id="toDateCheck" />
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button" onclick="hideCheckModal()">
+            @Hotels_Resrevation.Resources.Profile.ProfileIndex.Cancel
+        </div>
+        <div class="ui positive button" onclick="checkReservation()">
+            @Hotels_Resrevation.Resources.Rooms.RoomsIndex.Check_Availability
+        </div>
+    </div>
+</div>
+
+
+<!-- result modal -->
+<!-- check reservation -->
+<div class="ui result modal">
+    <div class="header">
+        Result
+    </div>
+    <div id="contentResult" class="content">
+        
+    </div>
+    <div class="actions">
+        <div class="ui black deny button" onclick="hideResultModal()">
+            Done
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        let imgs = document.querySelectorAll(".img-slider");
+        let imgEle = document.querySelector("#curImg");
+        let currentImg = 0;
+        function next() {
+            if (currentImg < (imgs.length - 1)) {
+                currentImg++;
+            }
+            else {
+                currentImg = 0;
+            }
+            imgEle.src = imgs[currentImg].src;
+        }
+        function prev() {
+            if (currentImg > 0) {
+                currentImg--;
+            }
+            else {
+                currentImg = imgs.length - 1;
+            }
+            imgEle.src = imgs[currentImg].src;
+        }
+        function loadModal() {
+            $('.ui.long.modal')
+                .modal('show');
+        }
+        function hideModal() {
+            $('.ui.modal')
+                .modal('hide');
+        }
+        function bookNow() {
+            const fromDate = document.querySelector("#fromDate");
+            const toDate = document.querySelector("#toDate");
+            $.ajax({
+                url: `/Reservation/Book?roomId=${@Model.Room.Id}&fromDate=${fromDate.value}&toDate=${toDate.value}`,
+                method: "Post",
+                success: function (res) {
+                    const result = document.querySelector("#contentResult");
+                    result.innerHTML = res;
+                    $('.ui.result.modal')
+                        .modal('show');
+                }
+            });
+        }
+        function hideCheckModal() {
+            $('.ui.check.modal')
+                .modal('hide');
+        }
+        function loadCheckModal() {
+            $('.ui.check.modal')
+                .modal('show');
+        }
+        function checkReservation() {
+            const fromDate = document.querySelector("#fromDateCheck");
+            const toDate = document.querySelector("#toDateCheck");
+            $.ajax({
+                url: `/Reservation/CheckReservation?fromDate=${fromDate.value}&toDate=${toDate.value}&roomId=@Model.Room.Id`,
+                method: 'GET',
+                success: function (res) {
+                    const result = document.querySelector("#contentResult");
+                    result.innerHTML = res;
+                    $('.ui.result.modal')
+                        .modal('show');
+                }
+            });
+        }
+        function hideResultModal() {
+            $('.ui.result.modal')
+                .modal('hide');
+        }
+    </script>
+}
