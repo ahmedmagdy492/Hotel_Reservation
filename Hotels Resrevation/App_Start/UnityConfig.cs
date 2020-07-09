@@ -57,6 +57,7 @@ namespace Hotels_Resrevation
             container.RegisterType<IRoomRepository, RoomRepository>();
             container.RegisterType<IReservationRepository, ReservationRepository>();
             container.RegisterType<IFacilityRepository, FacilityRepository>();
+            container.RegisterType<IReviewRepository, ReviewRepository>();
         }
     }
 }

@@ -53,5 +53,12 @@ namespace Hotels_Resrevation.Controllers
             }
             return Content("Not Reserved");
         }
+
+        public async Task<ActionResult> GetMyReservations()
+        {
+            var userId = User.Identity.GetUserId();
+            var reservations = await reservationRepository.GetMyReservations(userId);
+            return View(reservations.Reverse());
+        }
     }
 }

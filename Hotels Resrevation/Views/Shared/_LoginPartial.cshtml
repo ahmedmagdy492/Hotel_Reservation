@@ -10,6 +10,10 @@
         {
             @Html.ActionLink(Hotels_Resrevation.Resources.Profile.ProfileIndex.Profile, "Index", "HotelProfile", routeValues: null, htmlAttributes: new { title = "Manage", @class = "ui item" })
         }
+        else if (User.IsInRole(Hotels_Resrevation.Constants.Constants.UserRole))
+        {
+            @Html.ActionLink(Hotels_Resrevation.Resources.Profile.ProfileIndex.Reservation, "GetMyReservations", "Reservation", routeValues: null, htmlAttributes: new { title = "Manage", @class = "ui item" })
+        }
         <a class="ui item" href="javascript:document.getElementById('logoutForm').submit()">@Hotels_Resrevation.Resources.HomeIndex.Log_out</a>
 
     }

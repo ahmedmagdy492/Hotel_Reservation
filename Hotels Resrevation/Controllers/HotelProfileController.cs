@@ -20,18 +20,21 @@ namespace Hotels_Resrevation.Controllers
         private readonly IImageRepository imageRepository;
         private readonly IRoomRepository roomRepository;
         private readonly IFacilityRepository facilityRepository;
+        private readonly IReviewRepository reviewRepository;
 
         public HotelProfileController(
             IProfileRepository profileRepository,
             IImageRepository imageRepository,
             IRoomRepository roomRepository,
-            IFacilityRepository facilityRepository
+            IFacilityRepository facilityRepository,
+            IReviewRepository reviewRepository
             )
         {
             this.profileRepository = profileRepository;
             this.imageRepository = imageRepository;
             this.roomRepository = roomRepository;
             this.facilityRepository = facilityRepository;
+            this.reviewRepository = reviewRepository;
         }
 
         [Authorize(Roles = Constants.Constants.HotelRole + "," + Constants.Constants.UserRole)]
@@ -61,7 +64,8 @@ namespace Hotels_Resrevation.Controllers
                 CurrentUserProfile = user,
                 Images = images,
                 Rooms = await roomRepository.GetRoomsOfHotel(user.Id),
-                Facilties = await facilityRepository.GetFaciltiesOfHotel(userId ?? user.Id)
+                Facilties = await facilityRepository.GetFaciltiesOfHotel(userId ?? user.Id),
+                Reviews = await reviewRepository.GetReviewsOfHotel(userId ?? user.Id)
             };
             return View(model);
         }

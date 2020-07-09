@@ -120,8 +120,14 @@
   <data name="Add Facilty" xml:space="preserve">
     <value>اضافة مرافق</value>
   </data>
+  <data name="All Rooms" xml:space="preserve">
+    <value>كل الغرف</value>
+  </data>
   <data name="Are you sure you want to delete the image ?!" xml:space="preserve">
     <value>هل انت متأكد انك تريد مسح الصورة؟!</value>
+  </data>
+  <data name="Avail" xml:space="preserve">
+    <value>متاحة</value>
   </data>
   <data name="Available Rooms" xml:space="preserve">
     <value>الغرف المتاحة</value>
@@ -132,17 +138,35 @@
   <data name="Change your password" xml:space="preserve">
     <value>تغيير كلمة المرور</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>تعليق</value>
+  </data>
   <data name="Confirm new password" xml:space="preserve">
     <value>تأكيد كلمة المرور الجديدة</value>
   </data>
   <data name="Current password" xml:space="preserve">
     <value>كلمة المرور الحالية</value>
   </data>
+  <data name="Days Count" xml:space="preserve">
+    <value>عدد الايام</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>مسح</value>
   </data>
+  <data name="End Date" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="Get Started" xml:space="preserve">
+    <value>ابدأ الان</value>
+  </data>
+  <data name="Hotel Name" xml:space="preserve">
+    <value>الفندق</value>
+  </data>
   <data name="Hotels" xml:space="preserve">
     <value>الفنادق</value>
+  </data>
+  <data name="Leave a review" xml:space="preserve">
+    <value>اترك تقييم</value>
   </data>
   <data name="Make Profile Image" xml:space="preserve">
     <value>تعيين كصورة شخصية</value>
@@ -159,11 +183,35 @@
   <data name="No Faclities" xml:space="preserve">
     <value>لا يوجد مرافق</value>
   </data>
+  <data name="No Reservations" xml:space="preserve">
+    <value>لا يوجد حجز بعد</value>
+  </data>
+  <data name="No Reviews Yet" xml:space="preserve">
+    <value>لا يوجد تقييمات بعد</value>
+  </data>
   <data name="NoImages" xml:space="preserve">
     <value>لا يوجد غرف... اضافه !</value>
   </data>
+  <data name="Passed" xml:space="preserve">
+    <value>ماضية</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>الملف الشخصي</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>تقييم</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>حجوزاتي</value>
+  </data>
+  <data name="Room No" xml:space="preserve">
+    <value>رقم الغرفة</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>رفع</value>

@@ -28,6 +28,12 @@ namespace Hotels_Resrevation.Repository
             return null;
         }
 
+        public async Task<IEnumerable<Reservation>> GetMyReservations(string userId)
+        {
+            var reservations = await db.Reservations.Include("Room").Include("Room.Hotel").Where(r => r.UserId == userId).ToListAsync();
+            return reservations;
+        }
+
         public async Task<bool> IsReserved(int roomId, DateTime fromDate, DateTime toDate)
         {
             var reservation = await db.Reservations.FirstOrDefaultAsync(r => r.RoomId == roomId && ((fromDate >= r.StartDate && toDate <= r.EndDate) || (toDate > r.StartDate && toDate < r.EndDate) || (fromDate > r.StartDate && fromDate < r.EndDate) || (fromDate < r.StartDate && toDate > r.EndDate)));

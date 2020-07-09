@@ -120,8 +120,14 @@
   <data name="Add Facility" xml:space="preserve">
     <value>Add Facility</value>
   </data>
+  <data name="All Rooms" xml:space="preserve">
+    <value>See All Rooms</value>
+  </data>
   <data name="Are you sure you want to delete the image ?!" xml:space="preserve">
     <value>Are you sure you want to delete the image ?!</value>
+  </data>
+  <data name="Avail" xml:space="preserve">
+    <value>Available</value>
   </data>
   <data name="Available Rooms" xml:space="preserve">
     <value>Available Rooms</value>
@@ -132,17 +138,35 @@
   <data name="Change your password" xml:space="preserve">
     <value>Change your password</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
   <data name="Confirm new password" xml:space="preserve">
     <value>Confirm new password</value>
   </data>
   <data name="Current password" xml:space="preserve">
     <value>Current password</value>
   </data>
+  <data name="Days Count" xml:space="preserve">
+    <value>Days Count</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="End Date" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="Get Started" xml:space="preserve">
+    <value>Get Started</value>
+  </data>
+  <data name="Hotel Name" xml:space="preserve">
+    <value>Hotel Name</value>
+  </data>
   <data name="Hotels" xml:space="preserve">
     <value>Hotels</value>
+  </data>
+  <data name="Leave a review" xml:space="preserve">
+    <value>Leave a review</value>
   </data>
   <data name="Make Profile Image" xml:space="preserve">
     <value>Make Profile Image</value>
@@ -159,11 +183,35 @@
   <data name="No Facilties" xml:space="preserve">
     <value>No Facilties</value>
   </data>
+  <data name="No Reivews Yet" xml:space="preserve">
+    <value>No Reviews Yet</value>
+  </data>
+  <data name="No Reservations" xml:space="preserve">
+    <value>No Reservations Yet</value>
+  </data>
   <data name="NoImages" xml:space="preserve">
     <value>No Rooms... Create</value>
   </data>
+  <data name="Passed" xml:space="preserve">
+    <value>Passed</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>My Reservations</value>
+  </data>
+  <data name="Room No" xml:space="preserve">
+    <value>Room No</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>Upload</value>

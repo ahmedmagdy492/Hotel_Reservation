@@ -197,6 +197,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\HotelProfileController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\RoomSearchController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -260,10 +261,12 @@
     <Compile Include="Repository\ImageRepository.cs" />
     <Compile Include="Repository\IProfileRepository.cs" />
     <Compile Include="Repository\IReservationRepository.cs" />
+    <Compile Include="Repository\IReviewRepository.cs" />
     <Compile Include="Repository\IRoomRepository.cs" />
     <Compile Include="Repository\ISearchRepository.cs" />
     <Compile Include="Repository\ProfileRepository.cs" />
     <Compile Include="Repository\ReservationRepository.cs" />
+    <Compile Include="Repository\ReviewRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
     <Compile Include="Repository\SearchRepository.cs" />
     <Compile Include="Resources\HomeIndex.ar.Designer.cs">
@@ -320,6 +323,7 @@
     <Compile Include="ViewModels\HotelProfileViewModel.cs" />
     <Compile Include="ViewModels\Lists.cs" />
     <Compile Include="ViewModels\OneRoomViewModel.cs" />
+    <Compile Include="ViewModels\ReviewsViewModel.cs" />
     <Compile Include="ViewModels\RoomsSearchViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />
   </ItemGroup>
@@ -335,6 +339,7 @@
     <Content Include="Content\imgs\site\review.png" />
     <Content Include="Content\imgs\site\rooms banner.jpg" />
     <Content Include="Content\imgs\site\search.png" />
+    <Content Include="Content\imgs\site\star.png" />
     <Content Include="Content\js\semantic.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -393,12 +398,13 @@
     <Content Include="Views\RoomSearch\Index.cshtml" />
     <Content Include="Views\Shared\_RoomSearch.cshtml" />
     <Content Include="Views\Shared\_HotelFacilites.cshtml" />
+    <Content Include="Views\Shared\_ReviewsSection.cshtml" />
+    <Content Include="Views\Reservation\GetMyReservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Facility\" />
     <Folder Include="Views\Language\" />
-    <Folder Include="Views\Reservation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

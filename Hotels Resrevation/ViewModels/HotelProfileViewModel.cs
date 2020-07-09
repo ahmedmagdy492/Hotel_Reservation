@@ -13,5 +13,6 @@ namespace Hotels_Resrevation.ViewModels
         public IEnumerable<UserImage> Images { get; set; }
         public IEnumerable<Room> Rooms { get; set; }
         public IEnumerable<Facilties> Facilties { get; set; }
+        public IEnumerable<Review> Reviews { get; set; }
     }
 }

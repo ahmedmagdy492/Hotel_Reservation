@@ -70,11 +70,29 @@ namespace Hotels_Resrevation.Resources.Profile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to See All Rooms.
+        /// </summary>
+        public static string All_Rooms {
+            get {
+                return ResourceManager.GetString("All Rooms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the image ?!.
         /// </summary>
         public static string Are_you_sure_you_want_to_delete_the_image___ {
             get {
                 return ResourceManager.GetString("Are you sure you want to delete the image ?!", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available.
+        /// </summary>
+        public static string Avail {
+            get {
+                return ResourceManager.GetString("Avail", resourceCulture);
             }
         }
         
@@ -106,6 +124,15 @@ namespace Hotels_Resrevation.Resources.Profile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm new password.
         /// </summary>
         public static string Confirm_new_password {
@@ -124,6 +151,15 @@ namespace Hotels_Resrevation.Resources.Profile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Days Count.
+        /// </summary>
+        public static string Days_Count {
+            get {
+                return ResourceManager.GetString("Days Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -133,11 +169,47 @@ namespace Hotels_Resrevation.Resources.Profile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End Date.
+        /// </summary>
+        public static string End_Date {
+            get {
+                return ResourceManager.GetString("End Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Started.
+        /// </summary>
+        public static string Get_Started {
+            get {
+                return ResourceManager.GetString("Get Started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hotel Name.
+        /// </summary>
+        public static string Hotel_Name {
+            get {
+                return ResourceManager.GetString("Hotel Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hotels.
         /// </summary>
         public static string Hotels {
             get {
                 return ResourceManager.GetString("Hotels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave a review.
+        /// </summary>
+        public static string Leave_a_review {
+            get {
+                return ResourceManager.GetString("Leave a review", resourceCulture);
             }
         }
         
@@ -187,6 +259,24 @@ namespace Hotels_Resrevation.Resources.Profile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Reviews Yet.
+        /// </summary>
+        public static string No_Reivews_Yet {
+            get {
+                return ResourceManager.GetString("No Reivews Yet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Reservations Yet.
+        /// </summary>
+        public static string No_Reservations {
+            get {
+                return ResourceManager.GetString("No Reservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Rooms... Create.
         /// </summary>
         public static string NoImages {
@@ -196,11 +286,65 @@ namespace Hotels_Resrevation.Resources.Profile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passed.
+        /// </summary>
+        public static string Passed {
+            get {
+                return ResourceManager.GetString("Passed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating.
+        /// </summary>
+        public static string Rating {
+            get {
+                return ResourceManager.GetString("Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Reservations.
+        /// </summary>
+        public static string Reservation {
+            get {
+                return ResourceManager.GetString("Reservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Room No.
+        /// </summary>
+        public static string Room_No {
+            get {
+                return ResourceManager.GetString("Room No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        public static string Start_Date {
+            get {
+                return ResourceManager.GetString("Start Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         

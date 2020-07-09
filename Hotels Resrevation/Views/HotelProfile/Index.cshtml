@@ -126,36 +126,24 @@
         else
         {
             <div style="width: 50%;margin: auto;" class="ui card">
-                <div class="content center">
-                    <a class="header" href="/Rooms/Index?hotelId=@Model.CurrentUserProfile.Id">@Hotels_Resrevation.Resources.Profile.ProfileIndex.NoImages</a>
-                </div>
+                <h3 style="text-align: center" class="content">
+                    <a class="header" href="/Rooms/Index?hotelId=@Model.CurrentUserProfile.Id">@Hotels_Resrevation.Resources.Profile.ProfileIndex.All_Rooms ...</a>
+                </h3>
             </div>
         }
     </div>
 
     <div style="width: 70%;margin: 150px auto;" class="ui relaxed divided list">
         <h2 style="text-align: center;">@Hotels_Resrevation.Resources.Profile.ProfileIndex.User_Reviews</h2>
-        <div class="item">
-            <div class="content">
-                <a class="header">Semantic-Org/Semantic-UI</a>
-                <div class="description">Updated 10 mins ago</div>
-                <div class="ui star rating" data-rating="4"></div>
-            </div>
+        <div id="review-container">
+            @Html.Partial("_ReviewsSection", new Hotels_Resrevation.ViewModels.ReviewsViewModel { Reviews = Model.Reviews.ToList() })
         </div>
-        <div class="item">
-            <div class="content">
-                <a class="header">Semantic-Org/Semantic-UI-Docs</a>
-                <div class="description">Updated 22 mins ago</div>
-                <div class="ui star rating" data-rating="2"></div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="content">
-                <a class="header">Semantic-Org/Semantic-UI-Meteor</a>
-                <div class="description">Updated 34 mins ago</div>
-                <div class="ui star rating" data-rating="3"></div>
-            </div>
-        </div>
+        @if (User.IsInRole(Hotels_Resrevation.Constants.Constants.UserRole))
+        {
+            <h4 style="text-align: center;">
+                <a onclick="showReviewModal()" class="ui secondary button">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Leave_a_review</a>
+            </h4>
+        }
     </div>
 
 </div>
@@ -220,6 +208,27 @@
     </div>
 </div>
 
+<!-- leave a review modal -->
+<div class="ui tiny review modal">
+    <div class="header">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Leave_a_review</div>
+    <div class="content" style="text-align: center">
+        <div class="ui form">
+            <div class="field">
+                <label>@Hotels_Resrevation.Resources.Profile.ProfileIndex.Comment</label>
+                <input type="text" id="inComment" />
+            </div>
+            <div class="field">
+                <label>@Hotels_Resrevation.Resources.Profile.ProfileIndex.Rating</label>
+                <input type="number" id="inRating" />
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <button class="ui positive button" onclick="addReview()">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Leave_a_review</button>
+        <button onclick="hideReviewModal()" class="ui negative button">@Hotels_Resrevation.Resources.Profile.ProfileIndex.Cancel</button>
+    </div>
+</div>
+
 @section Scripts{
     <script>
         function load() {
@@ -266,6 +275,36 @@
                 method: 'POST',
                 success: function (res) {
                     facContainer.innerHTML = res;
+                }
+            });
+        }
+        function hideReviewModal() {
+            $('.ui.tiny.review.modal')
+                .modal('hide');
+        }
+        function showReviewModal(id) {
+            $('.ui.tiny.review.modal')
+                .modal('show');
+        }
+        function addReview() {
+            const comment = document.querySelector("#inComment");
+            const inRating = document.querySelector("#inRating");
+            const container = document.querySelector("#review-container");
+            $.ajax({
+                url: `/Review/CreateReview?comment=${comment.value}&rating=${inRating.value}&hotelId=${location.href.split('/')[4].split('=')[1]}`,
+                method: "POST",
+                success: function (res) {
+                    container.innerHTML = res;
+                }
+            });
+        }
+        function remReview(id) {
+            const container = document.querySelector("#review-container");
+            $.ajax({
+                url: `/Review/DeleteReview?hotelId=${location.href.split('/')[4].split('=')[1]}&reviewId=${id}`,
+                method: 'POST',
+                success: function (res) {
+                    container.innerHTML = res;
                 }
             });
         }
