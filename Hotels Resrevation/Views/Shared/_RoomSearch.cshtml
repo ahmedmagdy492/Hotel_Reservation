@@ -1,43 +1,54 @@
-﻿@model Hotels_Resrevation.ViewModels.RoomsSearchViewModel
+﻿@using PagedList.Mvc
+@using PagedList
+@model Hotels_Resrevation.ViewModels.RoomsSearchViewModel
+
 
 @if (Model.Rooms.Count() > 0)
 {
-    foreach (var room in Model.Rooms)
-    {
-        <div class="card">
-            <div class="image">
-                @if (room.RoomImages.Count > 0)
-                {
-                    <img src="~/Content/imgs/@Path.GetFileName(room.RoomImages[0].Title)" height="100">
-                }
-                else
-                {
-                    <img src="~/Content/imgs/site/rooms banner.jpg" height="100">
-                }
-            </div>
-            <div class="content">
-                <div class="header">
-                    <a href="/Rooms/GetRoom?roomId=@room.Id&hotelId=@room.HotelId">@Hotels_Resrevation.Resources.Rooms.RoomsIndex.Room_No_ @room.Id</a>
+    <div class="ui cards">
+        @foreach (var room in Model.Rooms)
+        {
+            <div class="card">
+                <div class="image">
+                    @if (room.RoomImages.Count > 0)
+                    {
+                        <img src="~/Content/imgs/@Path.GetFileName(room.RoomImages[0].Title)" height="100">
+                    }
+                    else
+                    {
+                        <img src="~/Content/imgs/site/rooms banner.jpg" height="100">
+                    }
                 </div>
-                <div class="meta">
-                    <a href="/HotelProfile/Index?userId=@room.HotelId">@room.Hotel.UserName.Split('@')[0].ToUpper() Hotel</a>
+                <div class="content">
+                    <div class="header">
+                        <a href="/Rooms/GetRoom?roomId=@room.Id&hotelId=@room.HotelId">@Hotels_Resrevation.Resources.Rooms.RoomsIndex.Room_No_ @room.Id</a>
+                    </div>
+                    <div class="meta">
+                        <a href="/HotelProfile/Index?userId=@room.HotelId">@room.Hotel.UserName.Split('@')[0].ToUpper() Hotel</a>
+                    </div>
+                    <div class="description">
+                        @room.Type
+                    </div>
                 </div>
-                <div class="description">
-                    @room.Type
+                <div class="extra content">
+                    <span class="right floated">
+                        @room.Capcity @Hotels_Resrevation.Resources.Rooms.RoomsIndex.Persons
+                    </span>
+                    <span class="left floated">
+                        @room.Price $
+                    </span>
                 </div>
             </div>
-            <div class="extra content">
-                <span class="right floated">
-                    @room.Capcity @Hotels_Resrevation.Resources.Rooms.RoomsIndex.Persons
-                </span>
-                <span class="left floated">
-                    @room.Price $
-                </span>
-            </div>
-        </div>
-    }
+        }
+    </div>
+    <div style="margin: 50px;display: block !important">
+        <h3 style="text-align: center">
+            @Html.PagedListPager(Model.Rooms, i => Url.Action("Index", "RoomSearch", new { i }))
+        </h3>
+    </div>
 }
 else
 {
     <h3 style="text-align: center;">@Hotels_Resrevation.Resources.Rooms.RoomsIndex.No_Rooms</h3>
 }
+    </div>

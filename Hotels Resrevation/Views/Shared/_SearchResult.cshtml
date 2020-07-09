@@ -1,48 +1,51 @@
-﻿@model IEnumerable<Hotels_Resrevation.Models.ApplicationUser>
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Hotels_Resrevation.Models.ApplicationUser>
 
 @if (Model.Count() > 0)
 {
-    foreach (var hotel in Model)
-    {
-        <div class="card">
-            <div class="image">
-                @if (hotel.Images.Count > 0)
-                {
-                    foreach (var img in hotel.Images)
+    <div class="ui cards">
+        @foreach (var hotel in Model)
+        {
+            <div class="card">
+                <div class="image">
+                    @if (hotel.Images.Count > 0)
                     {
-                        if (img.IsProfileImg)
+                        foreach (var img in hotel.Images)
                         {
-                            <img src="~/Content/imgs/@Path.GetFileName(img.Title)" height="100">
-                            break;
+                            if (img.IsProfileImg)
+                            {
+                                <img src="~/Content/imgs/@Path.GetFileName(img.Title)" height="100">
+                                break;
+                            }
                         }
                     }
-                }
-                else
-                {
-                    <img src="~/Content/imgs/site/banner.jpg" height="100">
-                }
-            </div>
-            <div class="content">
-                <div class="header">
-                    <a href="/HotelProfile/Index?userId=@hotel.Id">@hotel.UserName.Split('@')[0].ToUpper() Hotel</a>
+                    else
+                    {
+                        <img src="~/Content/imgs/site/banner.jpg" height="100">
+                    }
                 </div>
-                <div class="meta">
-                    <a>@hotel.Location</a>
+                <div class="content">
+                    <div class="header">
+                        <a href="/HotelProfile/Index?userId=@hotel.Id">@hotel.UserName.Split('@')[0].ToUpper() Hotel</a>
+                    </div>
+                    <div class="meta">
+                        <a>@hotel.Location</a>
+                    </div>
+                    <div class="description">
+                        Just some hotel information
+                    </div>
                 </div>
-                <div class="description">
-                    Just some hotel information
+                <div class="extra content">
                 </div>
             </div>
-            <div class="extra content">
-                <span class="right floated">
-                    Joined in 2013
-                </span>
-                <span>
-                    75 Friends
-                </span>
-            </div>
-        </div>
-    }
+        }
+    </div>
+    <div style="margin: 20px;">
+        <h3 style="text-align: center;">
+            @Html.PagedListPager(Model, i => Url.Action("Index", "Search", new { i }))
+        </h3>
+    </div>
 }
 else
 {

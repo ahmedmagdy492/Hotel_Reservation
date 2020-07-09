@@ -141,3 +141,7 @@ F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevati
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\obj\Debug\Hotels_Resrevation.Migrations.removedSomeRedauntantPropsFromReservations.resources
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\obj\Debug\Hotels_Resrevation.Migrations.removedReserverDateFromReservation.resources
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\obj\Debug\Hotels_Resrevation.Migrations.fixedRoomReservationRelation.resources
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\PagedList.dll
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\PagedList.Mvc.dll
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\PagedList.xml
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\PagedList.Mvc.xml

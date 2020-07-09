@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using PagedList.Mvc;
+using PagedList;
 
 namespace Hotels_Resrevation.Controllers
 {
@@ -54,11 +56,11 @@ namespace Hotels_Resrevation.Controllers
             return Content("Not Reserved");
         }
 
-        public async Task<ActionResult> GetMyReservations()
+        public async Task<ActionResult> GetMyReservations(int? i)
         {
             var userId = User.Identity.GetUserId();
-            var reservations = await reservationRepository.GetMyReservations(userId);
-            return View(reservations.Reverse());
+            var reservations = (await reservationRepository.GetMyReservations(userId));
+            return View(reservations.Reverse().ToPagedList(i ?? 1, 3));
         }
     }
 }

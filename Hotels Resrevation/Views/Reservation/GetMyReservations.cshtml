@@ -1,5 +1,7 @@
 ﻿@using Hotels_Resrevation.Resources.Profile
-@model IEnumerable<Hotels_Resrevation.Models.Reservation>
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<Hotels_Resrevation.Models.Reservation>
 @{
     ViewBag.Title = Hotels_Resrevation.Resources.Profile.ProfileIndex.Reservation;
 }
@@ -36,7 +38,7 @@
                         <td>@res.DayCount</td>
                         <td>@res.Room.Id</td>
                         <td>@res.Room.Hotel.UserName.Split('@')[0].ToUpper()</td>
-                        @if(res.StartDate < DateTime.Now)
+                        @if (res.StartDate < DateTime.Now)
                         {
                             <td style="color: red;">@ProfileIndex.Passed</td>
                         }
@@ -48,5 +50,8 @@
                 }
             </tbody>
         </table>
+        <div style="display: flex;justify-content: center;font-size: 25px;">
+            @Html.PagedListPager(Model, i => Url.Action("GetMyReservations", "Reservation", new { i }))
+        </div>
     }
 </div>

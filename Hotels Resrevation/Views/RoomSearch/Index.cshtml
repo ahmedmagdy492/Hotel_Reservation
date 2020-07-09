@@ -1,4 +1,6 @@
 ﻿@using Hotels_Resrevation.ViewModels
+@using PagedList.Mvc
+@using PagedList
 @model RoomsSearchViewModel
 
 @{
@@ -33,7 +35,7 @@
         </div>
     </div>
 
-    <div id="cards-container" class="ui cards" style="margin: 50px;min-height: 300px;">
+    <div id="cards-container" style="margin: 50px;min-height: 300px;">
         @Html.Partial("_RoomSearch", Model)
     </div>
 

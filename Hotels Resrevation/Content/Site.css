@@ -78,3 +78,6 @@ textarea {
     margin: 20px;
     display: flex;
 }
+.paging * {
+    margin: 15px;
+}

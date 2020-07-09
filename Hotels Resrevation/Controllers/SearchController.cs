@@ -1,4 +1,5 @@
 ﻿using Hotels_Resrevation.Repository;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace Hotels_Resrevation.Controllers
             this.searchRepo = searchRepo;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? i)
         {
-            var hotels = await searchRepo.GetAllHotels();
+            var hotels = (await searchRepo.GetAllHotels()).ToPagedList(i ?? 1, 4);
             return View(hotels);
         }
 

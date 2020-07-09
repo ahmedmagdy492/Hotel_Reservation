@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Hotels_Resrevation.Models.ApplicationUser>
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Hotels_Resrevation.Models.ApplicationUser>
 @{
     ViewBag.Title = Hotels_Resrevation.Resources.Searching.SearchIndex.Search;
 }
@@ -23,7 +25,7 @@
 
     <div>
         <h2 style="text-align: center;margin-top: 20px;">@Hotels_Resrevation.Resources.Searching.SearchIndex.All_Hotels</h2>
-        <div id="cards-container" class="ui cards" style="margin: 50px;min-height: 300px;">
+        <div id="cards-container" style="margin: 50px;min-height: 300px;">
             @Html.Partial("_SearchResult", Model)
         </div>
     </div>
