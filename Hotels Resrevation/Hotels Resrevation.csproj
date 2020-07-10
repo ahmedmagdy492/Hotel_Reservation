@@ -197,6 +197,7 @@
     <Compile Include="Constants\Filters.cs" />
     <Compile Include="Constants\Utility.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DownloadsController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
@@ -341,6 +342,7 @@
     <Content Include="Content\css\icon.min.css" />
     <Content Include="Content\css\semantic.min.css" />
     <Content Include="Content\imgs\site\banner.jpg" />
+    <Content Include="Content\imgs\site\download.jpg" />
     <Content Include="Content\imgs\site\reservation.png" />
     <Content Include="Content\imgs\site\review.png" />
     <Content Include="Content\imgs\site\rooms banner.jpg" />
@@ -407,6 +409,7 @@
     <Content Include="Views\Shared\_HotelFacilites.cshtml" />
     <Content Include="Views\Shared\_ReviewsSection.cshtml" />
     <Content Include="Views\Reservation\GetMyReservations.cshtml" />
+    <Content Include="Views\Downloads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

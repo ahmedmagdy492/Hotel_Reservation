@@ -61,6 +61,33 @@ namespace Hotels_Resrevation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Now.
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download our app for managing your hotel now.
+        /// </summary>
+        public static string Download_Software {
+            get {
+                return ResourceManager.GetString("Download Software", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloads.
+        /// </summary>
+        public static string Downloads {
+            get {
+                return ResourceManager.GetString("Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features.
         /// </summary>
         public static string Features {
