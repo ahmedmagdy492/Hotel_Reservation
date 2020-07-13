@@ -26,10 +26,10 @@ namespace Hotels_Resrevation.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Search(string searchQuery)
+        public async Task<ActionResult> Search(string searchQuery, int? i)
         {
             var hotels = await searchRepo.GetHotelByName(searchQuery);
-            return PartialView("_SearchResult", hotels);
+            return PartialView("_SearchResult", hotels.ToPagedList(i ?? 1, 4));
         }
     }
 }

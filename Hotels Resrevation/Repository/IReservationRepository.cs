@@ -12,5 +12,6 @@ namespace Hotels_Resrevation.Repository
         Task<Reservation> Book(Reservation reservation);
         Task<bool> IsReserved(int roomId, DateTime fromDate, DateTime toDate);
         Task<IEnumerable<Reservation>> GetMyReservations(string userId);
+        Task<IEnumerable<Reservation>> GetHotelReservations(string hotelId);
     }
 }

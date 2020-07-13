@@ -145,3 +145,9 @@ F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevati
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\PagedList.Mvc.dll
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\PagedList.xml
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\PagedList.Mvc.xml
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\System.Net.Http.Formatting.dll
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\System.Web.Http.dll
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\System.Web.Http.WebHost.dll
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\System.Net.Http.Formatting.xml
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\System.Web.Http.xml
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotels Resrevation\bin\System.Web.Http.WebHost.xml

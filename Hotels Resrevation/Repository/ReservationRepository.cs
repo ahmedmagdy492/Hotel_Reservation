@@ -28,6 +28,11 @@ namespace Hotels_Resrevation.Repository
             return null;
         }
 
+        public async Task<IEnumerable<Reservation>> GetHotelReservations(string hotelId)
+        {
+            return await db.Reservations.Include("Room").Where(r => r.Room.HotelId == hotelId).ToListAsync();
+        }
+
         public async Task<IEnumerable<Reservation>> GetMyReservations(string userId)
         {
             var reservations = await db.Reservations.Include("Room").Include("Room.Hotel").Where(r => r.UserId == userId).ToListAsync();
