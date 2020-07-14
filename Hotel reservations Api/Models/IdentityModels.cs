@@ -11,6 +11,7 @@ namespace Hotel_reservations_Api.Models
     public class ApplicationUser : IdentityUser
     {
         public new string Email { get; set; }
+        public bool IsHotel { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

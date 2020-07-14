@@ -129,5 +129,35 @@ namespace Hotel_Reservations_Management
                 btnBookRoom.Enabled = false;
             }
         }
+
+        private async void btnBookRoom_Click(object sender, EventArgs e)
+        {
+            var roomId = Convert.ToInt32(metroGrid1.SelectedRows[0].Cells[0].Value);
+            frmBookRoom bookRoom = new frmBookRoom(Token, roomId);
+            bookRoom.ShowDialog();
+
+            var response = await httpClient.GetAsync(url + "HotelReservations?hotelId=" + Token.userId);
+            if (response.IsSuccessStatusCode)
+            {
+                var reservations = JsonConvert.DeserializeObject<IEnumerable<Reservation>>(await response.Content.ReadAsStringAsync());
+                List<HotelReservationViewModel> model = new List<HotelReservationViewModel>();
+                foreach (var r in reservations)
+                {
+                    model.Add(new HotelReservationViewModel
+                    {
+                        Id = r.Id,
+                        DayCount = r.DayCount,
+                        StartDate = r.StartDate,
+                        EndDate = r.EndDate,
+                        RoomId = r.RoomId,
+                        Email = r.User.Email
+                    });
+                }
+                HotelReservations = model;
+                dataGridView1.DataSource = model;
+                dataGridView1.Font = new Font("Arial", 15, FontStyle.Regular);
+                metroGrid1.Font = new Font("Arial", 15, FontStyle.Regular);
+            }
+        }
     }
 }

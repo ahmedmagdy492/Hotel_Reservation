@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace Hotel_reservations_Api.Controllers
 {
+    [Authorize]
     public class RoomsController : ApiController
     {
         private readonly ApplicationDbContext db;
@@ -24,5 +25,6 @@ namespace Hotel_reservations_Api.Controllers
         {
             return Ok(await db.Rooms.Where(r => r.HotelId == hotelId).ToListAsync());
         }
+
     }
 }

@@ -74,3 +74,4 @@ F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotel_Reservatio
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotel_Reservations_Management\bin\Debug\Unity.AspNet.WebApi.xml
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotel_Reservations_Management\bin\Debug\System.Web.Http.Owin.xml
 F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotel_Reservations_Management\bin\Debug\System.Web.Http.WebHost.xml
+F:\testing projects\Hotel Reservations - NEW\Hotels Resrevation\Hotel_Reservations_Management\obj\Debug\Hotel_Reservations_Management.frmBookRoom.resources
