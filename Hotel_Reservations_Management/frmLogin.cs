@@ -55,6 +55,8 @@ namespace Hotel_Reservations_Management
                         else
                         {
                             MetroMessageBox.Show(this, "This account is not registered as a hotel please login with a hotel account", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            btnLogin.Enabled = true;
+                            btnLogin.Text = "Login";
                         }
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
